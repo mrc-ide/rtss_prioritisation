@@ -1,0 +1,5 @@
+scenario,vaccine_cov,total_clin_cases_averted_thousands,total_sev_cases_averted_thousands,total_deaths_averted_thousands,clin_cases_averted_per_1000_doses,num_countries,country_list
+Maintain 2016,Realistic coverage,5328 (3502-8162),143 (70-225),24 (12-38),178,21,"BEN, BFA, CAF, CIV, CMR, COD, COG, GHA, GIN, KEN, LBR, MLI, MOZ, MWI, NER, NGA, SLE, TCD, TGO, UGA, ZMB"
+Maintain 2016,100% coverage,7958 (5589-11819),199 (102-310),34 (17-52),265,22,"BEN, BFA, CAF, CIV, CMR, COD, COG, GHA, GIN, GNQ, KEN, LBR, MLI, MOZ, MWI, NER, NGA, SLE, TCD, TGO, UGA, ZMB"
+High,Realistic coverage,4512 (2962-7164),131 (65-208),17 (8-27),150,21,"BDI, BEN, BFA, CAF, CIV, CMR, COD, GHA, GIN, KEN, LBR, MLI, MOZ, MWI, NER, NGA, SLE, TCD, TGO, UGA, ZMB"
+High,100% coverage,6411 (4348-9779),178 (90-274),23 (12-35),214,20,"BEN, BFA, CAF, CIV, COD, GHA, GIN, GNQ, KEN, LBR, MLI, MOZ, MWI, NER, NGA, SLE, TCD, TGO, UGA, ZMB"

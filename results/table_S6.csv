@@ -1,0 +1,9 @@
+vaccine_dose,vaccine_cov,total_clin_cases_averted_thousands,total_sev_cases_averted_thousands,total_deaths_averted_thousands,clin_cases_averted_per_1000_doses,3_dose,4_dose
+4 doses,100% coverage,4639 (3046-7420),144 (71-229),19 (9-30),155,NA,"BFA, CAF, COD, GAB, GHA, GIN, GNQ, LBR, MLI, MOZ, SLE, TGO"
+4 doses,"D1-3 DTP3, D4 100%",3771 (2472-6139),116 (57-191),15 (7-25),126,NA,"BEN, BFA, COD, GAB, GHA, GIN, GNQ, MOZ, SLE, TGO, ZMB"
+4 doses,"Realistic coverage: D1-3 DTP3, D4 80%",3640 (2354-5924),113 (55-186),15 (7-24),122,NA,"BEN, BFA, COD, GAB, GHA, GIN, GNQ, MOZ, SLE, TGO, ZMB"
+4 doses,"D1-3 DTP3, D4 60%",3552 (2213-5765),111 (52-180),14 (7-23),119,NA,"BEN, BFA, COD, GAB, GHA, GIN, GNQ, MOZ, SLE, TGO, ZMB"
+Either schedule,100% coverage,4558 (2957-7336),143 (70-232),19 (9-30),152,"BFA, CAF, GIN, GNQ, MOZ, ZMB","COD, GHA, MLI, SLE, TGO"
+Either schedule,"D1-3 DTP3, D4 100%",3543 (2191-5873),114 (53-191),15 (7-25),119,"BEN, BFA, CAF, COD, GHA, GNQ, MOZ, SLE, ZMB","CIV, COG, GAB, GIN, LBR, NAM, TGO"
+Either schedule,"Realistic coverage: D1-3 DTP3, D4 80%",3592 (2216-5964),116 (54-193),15 (7-25),120,"BEN, BFA, CIV, COD, GHA, GIN, GNQ, MLI, MOZ, SLE, ZMB","NAM, TGO"
+Either schedule,"D1-3 DTP3, D4 60%",3567 (2201-5936),115 (53-192),15 (7-25),119,"BEN, BFA, CIV, COD, GHA, GIN, GNQ, MLI, MOZ, SLE, TGO, ZMB","GAB, NAM"
