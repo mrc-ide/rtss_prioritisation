@@ -49,7 +49,7 @@ ranking <- function(scenario, vaccine_dose, vaccine_cov, constraint){
   
   # add upper and lower bounds
   upper_lower <- read_csv(paste0("modelled_events/impact_5y_upper_lower_events_averted_country_", scenario, ".csv"), col_types = "cccdddddddd")%>% filter(vaccine_scenario == vaccine_cov) %>%
-    select(-vaccine_scenario)
+    dplyr::select(-vaccine_scenario)
   priority_list <- left_join(priority_list, upper_lower, by = c("ISO", "vaccine_type"))
   
   # Save output

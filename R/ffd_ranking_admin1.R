@@ -18,7 +18,8 @@ data <- data %>% dplyr::filter(vaccine_scenario == vaccine_cov) %>%
          deaths_averted_per_dose = deaths_averted / num_vacc_doses) %>%
   dplyr::select(c(ISO, DIDE_CODE, vaccine_type, clin_cases_averted, sev_cases_averted, deaths_averted, clin_cases_averted_per_dose, sev_cases_averted_per_dose, deaths_averted_per_dose, num_vacc_doses))
 
-# ranking based on clinical cases averted per dose - change if want to rank based on sev cases or deaths
+# ranking based on clinical cases averted per dose
+
 data <- data[order(-data$clin_cases_averted_per_dose), ]
 
 }
@@ -50,7 +51,7 @@ ranking <- function(scenario, vaccine_dose, vaccine_cov, constraint){
   
   # add upper and lower bounds
   upper_lower <- read_csv(paste0("modelled_events/impact_5y_upper_lower_events_averted_admin1_", scenario, ".csv"), col_types = "iccddddddddc") %>% filter(vaccine_scenario == vaccine_cov) %>%
-    select(-vaccine_scenario)
+    dplyr::select(-vaccine_scenario)
   priority_list <- left_join(priority_list, upper_lower, by = c("ISO", "DIDE_CODE", "vaccine_type"))
   
   # Save output

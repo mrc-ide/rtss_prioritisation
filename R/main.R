@@ -16,6 +16,11 @@ library(rgeos)
 library(rgdal)
 library(cowplot)
 
+# create folders
+if (dir.exists("processed_outputs_scenario_1") == FALSE) {dir.create("processed_outputs_scenario_1")}
+if (dir.exists("processed_outputs_scenario_2") == FALSE) {dir.create("processed_outputs_scenario_2")}
+if (dir.exists("processed_outputs") == FALSE) {dir.create("processed_outputs")}
+
 # run the ranking algorithm for level, outcome type, time period
 source("R/ffd_ranking_country.R")
 source("R/ffd_ranking_admin1.R")
@@ -47,3 +52,5 @@ source("R/results_table_prioritise_pilots.R")
 # produce analysis 3: Figure 5, Table S6
 source("R/dose_schedules_maps.R")
 source("R/dose_schedules_tables.R")
+
+# produce analysis 4: Figure S4
