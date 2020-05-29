@@ -74,7 +74,7 @@ sub$vaccine_dose <- recode(sub$vaccine_dose, "3_dose" = "3 doses", "4_dose" = "4
 results_table <- left_join(results_table, sub, by = c("level", "scenario", "constraint_millions", "vaccine_dose", "vaccine_cov"))
 
 results_table <- results_table %>%
-  dplyr::filter(level == "Country", constraint == 30000000, scenario == "High") %>%
+  dplyr::filter(level == "Country", constraint == 30000000, scenario == "Maintain 2016") %>%
   arrange(vaccine_dose, vaccine_cov) %>%
   dplyr::select(vaccine_dose, vaccine_cov, total_clin_cases_averted_thousands,	total_sev_cases_averted_thousands,	total_deaths_averted_thousands, clin_cases_averted_per_1000_doses, "3_dose", "4_dose")
 results_table <- results_table[c(1,2,4,3,5,6,8,7),]

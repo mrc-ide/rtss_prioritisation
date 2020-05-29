@@ -70,32 +70,32 @@ sub$scenario = factor(sub$scenario, levels = c("scenario_1", "scenario_2"))
 sub$scenario <- recode(sub$scenario, "scenario_1" = "Maintain 2016", "scenario_2" = "High")
 
 results_table <- left_join(results_table, sub, by = c("scenario", "vaccine_cov", "level", "constraint_millions")) %>%
-  dplyr::select(level, constraint, scenario, vaccine_cov, total_clin_cases_averted_thousands,	total_sev_cases_averted_thousands,	total_deaths_averted_thousands, clin_cases_averted_per_1000_doses, num_countries, country_list)
+  dplyr::select(level, constraint, constraint_millions, scenario, vaccine_cov, total_clin_cases_averted_thousands,	total_sev_cases_averted_thousands,	total_deaths_averted_thousands, clin_cases_averted_per_1000_doses, num_countries, country_list)
 
 table_2A <- results_table %>%
   filter(level == "Country",
          constraint == 30000000) %>%
   mutate(scenario = as.character(scenario)) %>%
   arrange(desc(scenario), desc(vaccine_cov)) %>%
-  dplyr::select(-level, -constraint)
+  dplyr::select(-level, -constraint, -constraint_millions)
 
 table_2B <-results_table %>%
   filter(level == "Admin-1",
          constraint == 30000000) %>%
   mutate(scenario = as.character(scenario)) %>%
   arrange(desc(scenario), desc(vaccine_cov)) %>%
-  dplyr::select(-level, -constraint)
+  dplyr::select(-level, -constraint, -constraint_millions)
 
 table_S2 <- results_table %>%
   filter(level == "Country") %>%
   mutate(scenario = as.character(scenario)) %>%
-  arrange(desc(scenario), desc(vaccine_cov)) %>%
+  arrange(constraint_millions, desc(scenario), desc(vaccine_cov)) %>%
   dplyr::select(-level, -constraint)
 
 table_S3 <- results_table %>%
   filter(level == "Admin-1") %>%
   mutate(scenario = as.character(scenario)) %>%
-  arrange(desc(scenario), desc(vaccine_cov)) %>%
+  arrange(constraint_millions, desc(scenario), desc(vaccine_cov)) %>%
   dplyr::select(-level, -constraint)
   
 write_csv(table_2A, "results/table_2A.csv")
