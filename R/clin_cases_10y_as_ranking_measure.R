@@ -1,14 +1,18 @@
 
+# plotting options
+
 col1 <- "#2C848C"
 col2 <- "#8c510a"
 
-combine_country_rankings_deaths <- function(s, vc, vd, con){
-  dat <- read_csv(paste0("processed_outputs_", s, "/ranking_country_", s, "_", vd, "_", vc, "_", con/1e6, "_deaths.csv")) %>% rename("schedule" = "vaccine_type")
+#######################################################################
+
+combine_country_rankings_10y <- function(s, vc, vd, con){
+  dat <- read_csv(paste0("processed_outputs_", s, "/ranking_country_", s, "_", vd, "_", vc, "_", con/1e6, "_10y.csv")) %>% rename("schedule" = "vaccine_type")
   dat$scenario <- s
   dat$vaccine_cov <- vc
   dat$vaccine_dose <- vd
   dat$constraint <- con
-  dat$ranking_measure <- "deaths"
+  dat$ranking_measure <- "10y"
   return(dat)
 }
 
@@ -18,7 +22,7 @@ combine_country_rankings_clin_cases <- function(s, vc, vd, con){
   dat$vaccine_cov <- vc
   dat$vaccine_dose <- vd
   dat$constraint <- con
-  dat$ranking_measure <- "clin_cases"
+  dat$ranking_measure <- "5y"
   return(dat)
 }
 
@@ -33,19 +37,17 @@ params <- as.list(crossing(s, vc, vd, con))
 df_country_1 <- rbindlist(purrr::pmap(params, combine_country_rankings_clin_cases))
 df_country_1$level <- "country"
 
-df_country_2 <- rbindlist(purrr::pmap(params, combine_country_rankings_deaths))
+df_country_2 <- rbindlist(purrr::pmap(params, combine_country_rankings_10y))
 df_country_2$level <- "country"
 
 df_country_1 <- dplyr::select(df_country_1, c(colnames(df_country_2)))
-
 df_country <- rbind(df_country_1, df_country_2)
 
 ISO_list <- unique(df_country$ISO)
 n <- length(ISO_list)
-ranking_measure <- c("clin_cases", "deaths")
+ranking_measure <- c("5y", "10y")
 results <- crossing(ISO_list, s, vc, vd, con, ranking_measure)
 colnames(results) <- c("ISO", "scenario", "vaccine_cov", "vaccine_dose", "constraint", "ranking_measure")
-
 
 x <- left_join(results, df_country)
 x[which(is.na(x$schedule)),]$schedule <- "No vaccine"
@@ -55,7 +57,8 @@ x$level <- recode(x$level, "country" = "Country")
 x$vaccine_cov <- recode(x$vaccine_cov, "full_coverage" = "100% coverage", "reduced_coverage" = "Realistic coverage")
 x$scenario = factor(x$scenario, levels = c("scenario_1", "scenario_2"))
 x$scenario <- recode(x$scenario, "scenario_1" = "Maintain 2016", "scenario_2" = "High  coverage")
-x$ranking_measure <- recode(x$ranking_measure, "clin_cases" = "Clinical cases", "deaths" = "Deaths")
+x$ranking_measure = factor(x$ranking_measure, levels=c('5y','10y'))
+x$ranking_measure <- recode(x$ranking_measure, "5y" = "5 years", "10y" = "10 years")
 
 x$constraint_millions <- paste(x$constraint/1000000, " million")
 
@@ -69,15 +72,16 @@ plot <- ggplot(data = x, aes(x = ranking_measure, y = ISO)) +
   scale_fill_manual(values = c(col1, "white")) +
   labs(fill = "", x = "Ranking measure", y = "Country")
 
-save_plot("results/Figure_S4_option2.png", plot, ncol = 2,  nrow = 2)
+plot
 
+save_plot("results/Figure_S5_option2.png", plot, ncol = 2,  nrow = 2)
 
 x2 <- filter(x, scenario == "Maintain 2016", vaccine_cov == "Realistic coverage")
 
 pg <- function(dat){
   ggplot(data = dat, aes(x = ranking_measure, y = ISO)) +
     geom_tile(aes(fill = schedule), col = "white") +
-    theme(axis.text.x = element_text(angle = 90, size = 6, vjust = 0.4),
+    theme(axis.text.x = element_text(angle = 90, size = 6),
           axis.text.y = element_text(size = 4),
           axis.title = element_text(size = 7),
           legend.text=element_text(size=6), 
@@ -99,5 +103,6 @@ grids <- lapply(opts, function(x){
 p1 <- cowplot::plot_grid(plotlist = grids, nrow = 1, labels="AUTO", label_size = 9)
 p2 <- cowplot::plot_grid(p1, leg, ncol = 2, rel_widths = c(2, 0.3))
 
-ggsave("results/Figure_S4.png", p2,
+ggsave("results/Figure_S5.png", p2,
        height = 5, width = 12, units = "cm", dpi = 500)
+

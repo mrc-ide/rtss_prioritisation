@@ -53,4 +53,6 @@ source("R/results_table_prioritise_pilots.R")
 source("R/dose_schedules_maps.R")
 source("R/dose_schedules_tables.R")
 
-# produce analysis 4: Figure S4
+# produce analysis 4: Figure S4, Figure S5
+source("R/deaths_as_ranking_measure.R")
+source("R/clin_cases_10y_as_ranking_measure")
