@@ -30,11 +30,14 @@ source("R/ffd_ranking_country_prioritise_pilots.R")
 source("R/ffd_ranking_admin1_prioritise_pilots.R")
 source("R/ffd_ranking_country_deaths.R")
 source("R/ffd_ranking_admin1_deaths.R")
+source("R/ffd_ranking_country_sensitivity_lowest_coverage.R")
+source("R/ffd_ranking_admin1_sensitivity_lowest_coverage.R")
 
 # combine rankings lists for different scenarios and dose constraints
 source("R/combine_rankings_lists.R")
 source("R/combine_rankings_lists_prioritise_pilots.R")
 source("R/combine_rankings_lists_deaths.R")
+source("R/combine_rankings_lists_sensitivity_lowest_coverage.R")
 
 # produce analysis 1: Figures 1-3, Figures S1-S2, Table 2, Table S2, Table S3
 source("R/curve_plots.R")
@@ -55,4 +58,7 @@ source("R/dose_schedules_tables.R")
 
 # produce analysis 4: Figure S4, Figure S5
 source("R/deaths_as_ranking_measure.R")
-source("R/clin_cases_10y_as_ranking_measure")
+source("R/clin_cases_10y_as_ranking_measure.R")
+
+# produce analysis 5: Figure S6
+source("R/sensitivity_lowest_coverage.R")
