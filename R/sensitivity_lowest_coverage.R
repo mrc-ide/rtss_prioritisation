@@ -52,5 +52,5 @@ p2 <- cowplot::plot_grid(p1, leg, ncol = 2, rel_widths = c(2, 0.3))
 
 p2
 
-ggsave("results/Figure_S6.png", p2,
+ggsave("results/S6_Fig.tiff", p2,
        height = 5, width = 12, units = "cm", dpi = 500)

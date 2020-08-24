@@ -54,10 +54,11 @@ df$scenario <- recode(df$scenario, "scenario_1" = "Maintain 2016 intervention co
 map <- ggplot() + 
   geom_polygon(data = df, aes(x = long, y = lat, group = group, fill = clin_cases_averted_per_dose), colour = darkgrey, size = 0.5) +
   theme_void() +
-  theme(strip.text.x = element_text(size = 12), legend.text=element_text(size=11), legend.title=element_text(size=12), legend.key.width = unit(0.4, "cm")) +
+  theme(strip.text.x = element_text(size = 10, margin = margin(.1, 0, .1, 0, "cm")), legend.text=element_text(size=11), legend.title=element_text(size=11), legend.key.width = unit(0.4, "cm")) +
   scale_fill_viridis_c(na.value = "white", name = "CCA/dose", breaks = seq(0,upper_lim,0.1), limits = c(0,upper_lim)) +
-  geom_text(data = country_coord, aes(x = long, y = lat, label = label), size = 2) +
+  #geom_text(data = country_coord, aes(x = long, y = lat, label = label), size = 2) +
   facet_wrap(scenario ~ vaccine_cov) + 
   coord_fixed()
 
-save_plot("results/Figure_S3.png", map, ncol = 2, nrow = 2)
+save_plot("results/S3_Fig.tiff", map, ncol = 2, nrow = 2, base_height = 3.7, base_width = 3.7)
+

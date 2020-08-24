@@ -63,7 +63,7 @@ ds_map <- function(data, caption){
     theme(legend.text=element_text(size=6), 
           legend.title=element_text(size=7),
           legend.key.size = unit(0.25, "cm"),
-          plot.caption = element_text(size = 5.5)) +
+          plot.caption = element_text(size = 6.5)) +
     scale_fill_manual(values = c(col2, col1, "white"), drop = FALSE) +
     #geom_text(data = country_coord, aes(x = long, y = lat, label = label), size = 0.7) +
     labs(fill = "", caption = caption) + 
@@ -77,11 +77,12 @@ maps <- list()
 
 for(i in 1:nrow(opts)){
   maps[[i]] <- ds_map(filter(df, vaccine_cov == unlist(opts[i, 1]), vaccine_dose == unlist(opts[i, 2])), opts$vaccine_cov[i]) +
-    theme(legend.position="none")
+    theme(legend.position="none", 
+    plot.margin = margin(4, 4, 4, 4))
 }
 
 maps_plot <- cowplot::plot_grid(plotlist = maps, nrow = 2, labels = "AUTO", label_size = 8)
 map_dose_schedules <- cowplot::plot_grid(maps_plot, leg, ncol = 2, rel_widths = c(1, 0.15))
 
-ggsave("results/Figure_5.png", map_dose_schedules, 
-       height = 6, width = 12, units = "cm", dpi = 500)
+ggsave("results/Fig5.tiff", map_dose_schedules, 
+       height = 7.2, width = 13, units = "cm", dpi = 500)

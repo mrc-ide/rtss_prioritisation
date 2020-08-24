@@ -79,7 +79,7 @@ map_f <- function(data, name){
     theme(plot.title = element_text(size = title_size), strip.text.x = element_text(size = facet_font_size), legend.position = "none") +
     scale_fill_manual(values = cols) +
     coord_fixed() +
-    theme(plot.caption = element_text(size = 8, hjust = 0.5))
+    theme(plot.caption = element_text(size = 20/ .pt, hjust = 0.5))
 }
 
 maps <- lapply(unique(df_admin12$constraint), function(x){
@@ -88,4 +88,4 @@ maps <- lapply(unique(df_admin12$constraint), function(x){
 
 map_admin12 <- cowplot::plot_grid(plotlist = maps, nrow = 2, labels = "AUTO", label_size = 9)
 
-ggsave("results/Figure_3.png", map_admin12, height = 6, width = 10, units = "cm", dpi = 500)
+ggsave("results/Fig3.tiff", map_admin12, height = 7.5, width = 12, units = "cm", dpi = 400)

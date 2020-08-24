@@ -99,5 +99,5 @@ grids <- lapply(opts, function(x){
 p1 <- cowplot::plot_grid(plotlist = grids, nrow = 1, labels="AUTO", label_size = 9)
 p2 <- cowplot::plot_grid(p1, leg, ncol = 2, rel_widths = c(2, 0.3))
 
-ggsave("results/Figure_S4.png", p2,
+ggsave("results/S4_Fig.tiff", p2,
        height = 5, width = 12, units = "cm", dpi = 500)
