@@ -15,6 +15,7 @@ library(maptools)
 library(rgeos)
 library(rgdal)
 library(cowplot)
+library(sf)
 
 # create folders
 if (dir.exists("processed_outputs_scenario_1") == FALSE) {dir.create("processed_outputs_scenario_1")}
@@ -62,3 +63,17 @@ source("R/clin_cases_10y_as_ranking_measure.R")
 
 # produce analysis 5: Figure S6
 source("R/sensitivity_lowest_coverage.R")
+
+# new versions of figures with open source shapefiles
+# Figure 2
+source("R/maps_across_constraints_new_sf.R")
+# Figure 3
+source("R/maps_across_constraints_admin1_new_sf.R")
+# Figure 5
+source("R/dose_schedules_maps_new_sf.R")
+# Figure S1, S2
+source("R/maps_curve_plots_country_new_sf.R")
+source("R/maps_curve_plots_admin1_new_sf.R")
+# Figure S3
+source("R/plots_country_prioritise_pilots_new_sf.R")
+
