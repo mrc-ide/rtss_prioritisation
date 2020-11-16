@@ -47,6 +47,15 @@ cols <- c(col3, "white")
 facet_font_size <- 24
 title_size <- 27
 
+map_f <- function(data, name){
+  ggplot() +
+    geom_sf(data = data, aes(geometry = geometry, fill = schedule), colour = darkgrey, size = 0.2) +
+    theme_void() +
+    labs(caption = name) + 
+    theme(plot.title = element_text(size = title_size), strip.text.x = element_text(size = facet_font_size), legend.position = "none") +
+    scale_fill_manual(values = cols) +
+    theme(plot.caption = element_text(size = 20/ .pt, hjust = 0.5))
+}
 
 df_country11 <- create_df_across_constraints(1e7)
 m1 <- map_f(df_country11, "10 million")
@@ -61,22 +70,10 @@ df_country14 <- create_df_across_constraints(4e7)
 m4 <- map_f(df_country14, "40 million")
 
 df_country15 <- create_df_across_constraints(5e7)
-m5 <- map_f(df_country15, "40 million")
+m5 <- map_f(df_country15, "50 million")
 
 df_country16 <- create_df_across_constraints(6e7)
 m6 <- map_f(df_country16, "60 million")
-
-
-map_f <- function(data, name){
-  ggplot() +
-    geom_sf(data = data, aes(geometry = geometry, fill = schedule), colour = darkgrey, size = 0.2) +
-    theme_void() +
-    labs(caption = name) + 
-    theme(plot.title = element_text(size = title_size), strip.text.x = element_text(size = facet_font_size), legend.position = "none") +
-    scale_fill_manual(values = cols) +
-    theme(plot.caption = element_text(size = 20/ .pt, hjust = 0.5))
-}
-
 
 map_country11 <- cowplot::plot_grid(m1, m2, m3, m4 , m5, m6, nrow = 2, labels = "AUTO", label_size = 9)
 map_country11

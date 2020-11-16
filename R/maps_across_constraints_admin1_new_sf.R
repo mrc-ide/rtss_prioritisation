@@ -68,7 +68,7 @@ df_country14 <- create_shp1_data(4e7)
 m4 <- map_f(shp0_africa_df, df_country14, "40 million")
 
 df_country15 <- create_shp1_data(5e7)
-m5 <- map_f(shp0_africa_df, df_country15, "40 million")
+m5 <- map_f(shp0_africa_df, df_country15, "50 million")
 
 df_country16 <- create_shp1_data(6e7)
 m6 <- map_f(shp0_africa_df, df_country16, "60 million")
